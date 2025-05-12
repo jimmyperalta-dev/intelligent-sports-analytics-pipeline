@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NY Giants Analytics Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏈 NY Giants Analytics Platform</h1>
+            <p>AI-Powered Document Analysis for Giants Data (1999-2024)</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <h2>Upload Document</h2>
+                <div class="upload-area" id="uploadArea">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <p>Drag and drop files here, or click to browse</p>
+                    <p class="file-types">Supports PDF, DOCX, TXT files</p>
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.txt" hidden>
+                </div>
+                <div id="uploadStatus" class="upload-status"></div>
+            </section>
+
+            <!-- Search Section -->
+            <section class="search-section">
+                <h2>Search Documents</h2>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search Giants data..." class="search-input">
+                    <select id="searchType" class="search-type">
+                        <option value="all">All Types</option>
+                        <option value="season_report">Season Reports</option>
+                        <option value="player_stats">Player Stats</option>
+                        <option value="draft_report">Draft Reports</option>
+                        <option value="contract_news">Contract News</option>
+                        <option value="stadium_report">Stadium Reports</option>
+                    </select>
+                    <button id="searchButton" class="search-button">Search</button>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <h2>Search Results</h2>
+                <div id="resultsContainer" class="results-container">
+                    <!-- Results will be populated here -->
+                    <div class="no-results">No results to display. Try searching for Giants data!</div>
+                </div>
+            </section>
+
+            <!-- Recent Documents -->
+            <section class="recent-section">
+                <h2>Recent Documents</h2>
+                <div id="recentDocuments" class="recent-documents">
+                    <div class="document-card">
+                        <h3>NY Giants 2023 Season Review</h3>
+                        <p>Complete analysis of the 2023 season including player performance, coaching decisions, and key games.</p>
+                        <div class="document-meta">
+                            <span class="doc-type">Season Report</span>
+                            <span class="doc-date">Jan 15, 2024</span>
+                        </div>
+                    </div>
+                    <div class="document-card">
+                        <h3>Saquon Barkley Career Statistics</h3>
+                        <p>Comprehensive statistics for RB Saquon Barkley including rushing yards, touchdowns, and receiving stats.</p>
+                        <div class="document-meta">
+                            <span class="doc-type">Player Stats</span>
+                            <span class="doc-date">Feb 20, 2024</span>
+                        </div>
+                    </div>
+                    <div class="document-card">
+                        <h3>Giants 2024 Draft Analysis</h3>
+                        <p>Detailed breakdown of the Giants' 2024 draft picks including scouting reports and projected impact.</p>
+                        <div class="document-meta">
+                            <span class="doc-type">Draft Report</span>
+                            <span class="doc-date">Apr 26, 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Built with AWS AI Services • Terraform • Serverless Architecture</p>
+            <p>© 2024 NY Giants Analytics Platform by Jimmy Peralta</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
