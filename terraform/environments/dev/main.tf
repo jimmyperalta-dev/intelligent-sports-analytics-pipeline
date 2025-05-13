@@ -6,20 +6,17 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.74"  # Latest as of November 2024
+      version = "~> 5.74"
     }
     random = {
       source  = "hashicorp/random"
       version = "~> 3.6"
     }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.2"
+    }
   }
-  
-  # Optional: Configure backend for state storage
-  # backend "s3" {
-  #   bucket = "your-terraform-state-bucket"
-  #   key    = "intelligent-sports-analytics/terraform.tfstate"
-  #   region = "us-east-1"
-  # }
 }
 
 # Configure the AWS Provider
@@ -32,7 +29,6 @@ provider "aws" {
       Environment = var.environment
       ManagedBy   = "Terraform"
       Owner       = "Jimmy Peralta"
-      CreatedDate = timestamp()
     }
   }
 }
@@ -107,6 +103,7 @@ resource "aws_dynamodb_table" "document_metadata" {
     enabled = true
   }
 }
+
 # IAM role for Lambda execution
 resource "aws_iam_role" "lambda_execution_role" {
   name = "${var.project_name}-lambda-role-${random_id.suffix.hex}"
@@ -194,7 +191,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
 
 # Lambda layer for shared dependencies
 resource "aws_lambda_layer_version" "dependencies" {
-  filename   = "../../scripts/lambda-layer.zip"
+  filename   = "../../../scripts/lambda-layer.zip"
   layer_name = "${var.project_name}-dependencies"
 
   compatible_runtimes = ["python3.9", "python3.10", "python3.11"]
@@ -205,17 +202,17 @@ resource "aws_lambda_layer_version" "dependencies" {
 # Build Lambda layer
 resource "null_resource" "build_lambda_layer" {
   triggers = {
-    build_script = filemd5("../../scripts/build-lambda-layer.sh")
+    build_script = filemd5("../../../scripts/build-lambda-layer.sh")
   }
 
   provisioner "local-exec" {
-    command = "cd ../../scripts && ./build-lambda-layer.sh"
+    command = "cd ../../../scripts && ./build-lambda-layer.sh"
   }
 }
 
 # Lambda function for document processing
 resource "aws_lambda_function" "document_processor" {
-  filename         = "../../scripts/lambda-functions.zip"
+  filename         = "../../../scripts/lambda-functions.zip"
   function_name    = "${var.project_name}-processor-${random_id.suffix.hex}"
   role            = aws_iam_role.lambda_execution_role.arn
   handler         = "document_processor.lambda_handler"
@@ -238,17 +235,17 @@ resource "aws_lambda_function" "document_processor" {
 # Build Lambda functions
 resource "null_resource" "build_lambda_functions" {
   triggers = {
-    build_script = filemd5("../../scripts/build-lambda-functions.sh")
+    build_script = filemd5("../../../scripts/build-lambda-functions.sh")
   }
 
   provisioner "local-exec" {
-    command = "cd ../../scripts && ./build-lambda-functions.sh"
+    command = "cd ../../../scripts && ./build-lambda-functions.sh"
   }
 }
 
 # Lambda function for API handler
 resource "aws_lambda_function" "api_handler" {
-  filename         = "../../scripts/lambda-functions.zip"
+  filename         = "../../../scripts/lambda-functions.zip"
   function_name    = "${var.project_name}-api-${random_id.suffix.hex}"
   role            = aws_iam_role.lambda_execution_role.arn
   handler         = "api_handler.lambda_handler"
@@ -299,6 +296,7 @@ resource "aws_cloudwatch_log_group" "api_handler" {
   name              = "/aws/lambda/${aws_lambda_function.api_handler.function_name}"
   retention_in_days = var.log_retention_days
 }
+
 # API Gateway REST API
 resource "aws_api_gateway_rest_api" "api" {
   name        = "${var.project_name}-api-${random_id.suffix.hex}"
@@ -424,30 +422,6 @@ resource "aws_lambda_permission" "api_gateway_invoke" {
   source_arn    = "${aws_api_gateway_rest_api.api.execution_arn}/*/*"
 }
 
-# API Gateway stage
-resource "aws_api_gateway_stage" "api" {
-  deployment_id = aws_api_gateway_deployment.api.id
-  rest_api_id   = aws_api_gateway_rest_api.api.id
-  stage_name    = var.api_gateway_stage_name
-
-  access_log_settings {
-    destination_arn = aws_cloudwatch_log_group.api_gateway.arn
-    format = jsonencode({
-      requestId      = "$context.requestId"
-      requestTime    = "$context.requestTime"
-      requestTimeEpoch = "$context.requestTimeEpoch"
-      path           = "$context.path"
-      method         = "$context.httpMethod"
-      status         = "$context.status"
-      responseLength = "$context.responseLength"
-    })
-  }
-
-  xray_tracing_enabled = var.enable_xray_tracing
-
-  depends_on = [aws_cloudwatch_log_group.api_gateway]
-}
-
 # CloudWatch log group for API Gateway
 resource "aws_cloudwatch_log_group" "api_gateway" {
   name              = "/aws/apigateway/${var.project_name}-${random_id.suffix.hex}"
@@ -504,6 +478,7 @@ resource "aws_api_gateway_integration_response" "cors_upload" {
     "method.response.header.Access-Control-Allow-Origin"  = "'*'"
   }
 }
+
 # S3 bucket for static website hosting
 resource "aws_s3_bucket" "website" {
   bucket = "${var.project_name}-website-${random_id.suffix.hex}"
@@ -579,7 +554,7 @@ resource "aws_cloudfront_distribution" "web_distribution" {
   origin {
     domain_name = replace(aws_api_gateway_deployment.api.invoke_url, "/^https?://([^/]*).*/", "$1")
     origin_id   = "API-Gateway"
-    origin_path = "/${var.api_gateway_stage_name}"
+    origin_path = "/v1"
 
     custom_origin_config {
       http_port              = 80
