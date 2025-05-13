@@ -1,0 +1,69 @@
+{
+  "document_type": "player_stats",
+  "player": {
+    "name": "Saquon Barkley",
+    "position": "Running Back",
+    "jersey_number": 26,
+    "draft_info": {
+      "year": 2018,
+      "round": 1,
+      "pick": 2,
+      "college": "Penn State"
+    }
+  },
+  "career_stats": {
+    "seasons_played": 6,
+    "games_played": 74,
+    "career_totals": {
+      "rushing_yards": 5211,
+      "rushing_touchdowns": 35,
+      "receiving_yards": 2100,
+      "receiving_touchdowns": 12,
+      "total_touchdowns": 47
+    },
+    "season_by_season": [
+      {
+        "year": 2023,
+        "games": 14,
+        "rushing_yards": 962,
+        "rushing_tds": 6,
+        "receiving_yards": 280,
+        "receiving_tds": 4
+      },
+      {
+        "year": 2022,
+        "games": 16,
+        "rushing_yards": 1312,
+        "rushing_tds": 10,
+        "receiving_yards": 338,
+        "receiving_tds": 0
+      },
+      {
+        "year": 2021,
+        "games": 13,
+        "rushing_yards": 593,
+        "rushing_tds": 2,
+        "receiving_yards": 263,
+        "receiving_tds": 2
+      }
+    ]
+  },
+  "achievements": [
+    "2018 NFL Offensive Rookie of the Year",
+    "2x Pro Bowl Selection (2018, 2022)",
+    "2018 First-team All-Pro",
+    "Giants single-season rushing record (2022)"
+  ],
+  "injury_history": [
+    {
+      "year": 2020,
+      "injury": "ACL tear",
+      "games_missed": 14
+    },
+    {
+      "year": 2021,
+      "injury": "Ankle sprain",
+      "games_missed": 3
+    }
+  ]
+}

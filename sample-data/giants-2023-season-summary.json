@@ -1,0 +1,73 @@
+{
+  "document_type": "season_report",
+  "team": "New York Giants",
+  "season": "2023",
+  "record": {
+    "wins": 6,
+    "losses": 11,
+    "division_standing": "3rd in NFC East"
+  },
+  "key_players": [
+    {
+      "name": "Daniel Jones",
+      "position": "QB",
+      "stats": {
+        "passing_yards": 2623,
+        "touchdowns": 15,
+        "interceptions": 12,
+        "qb_rating": 82.4
+      }
+    },
+    {
+      "name": "Saquon Barkley",
+      "position": "RB",
+      "stats": {
+        "rushing_yards": 962,
+        "rushing_touchdowns": 6,
+        "receiving_yards": 280,
+        "games_played": 14
+      }
+    },
+    {
+      "name": "Darren Waller",
+      "position": "TE",
+      "stats": {
+        "receptions": 52,
+        "receiving_yards": 552,
+        "touchdowns": 1
+      }
+    }
+  ],
+  "coaching_staff": {
+    "head_coach": "Brian Daboll",
+    "offensive_coordinator": "Mike Kafka",
+    "defensive_coordinator": "Wink Martindale"
+  },
+  "notable_games": [
+    {
+      "date": "2023-09-10",
+      "opponent": "Dallas Cowboys",
+      "result": "W 40-0",
+      "highlights": "Dominant defensive performance with 7 sacks"
+    },
+    {
+      "date": "2023-12-25",
+      "opponent": "Philadelphia Eagles",
+      "result": "L 33-25",
+      "highlights": "Holiday game at Lincoln Financial Field"
+    }
+  ],
+  "analysis": {
+    "strengths": [
+      "Pass rush improved significantly",
+      "Offensive line development",
+      "Special teams consistency"
+    ],
+    "weaknesses": [
+      "Quarterback turnovers",
+      "Injury concerns at key positions",
+      "Red zone efficiency"
+    ],
+    "outlook": "The Giants showed flashes of potential but struggled with consistency. Key offseason needs include secondary help and offensive skill position upgrades."
+  }
+}

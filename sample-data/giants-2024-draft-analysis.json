@@ -1,0 +1,61 @@
+{
+  "document_type": "draft_report",
+  "team": "New York Giants",
+  "draft_year": 2024,
+  "draft_summary": {
+    "total_picks": 10,
+    "trades": [
+      {
+        "description": "Traded up from #6 to #3",
+        "gave_up": "2024 1st (#6), 2024 3rd, 2025 2nd",
+        "received": "2024 1st (#3)"
+      }
+    ]
+  },
+  "draft_picks": [
+    {
+      "round": 1,
+      "pick": 3,
+      "player": "Marvin Harrison Jr.",
+      "position": "WR",
+      "college": "Ohio State",
+      "analysis": "Elite receiver prospect to pair with Daniel Jones. Immediate starter with Pro Bowl potential.",
+      "grade": "A+"
+    },
+    {
+      "round": 2,
+      "pick": 39,
+      "player": "JC Latham",
+      "position": "OT",
+      "college": "Alabama",
+      "analysis": "Prototypical left tackle to protect Jones' blindside. High floor, high ceiling prospect.",
+      "grade": "A"
+    },
+    {
+      "round": 4,
+      "pick": 108,
+      "player": "Brenden Rice",
+      "position": "WR",
+      "college": "USC",
+      "analysis": "Son of Jerry Rice adds depth at receiver. Good route runner with reliable hands.",
+      "grade": "B+"
+    }
+  ],
+  "positional_needs_addressed": {
+    "wide_receiver": "Major need addressed with Harrison Jr.",
+    "offensive_line": "Latham adds crucial protection",
+    "secondary": "Still needs attention in free agency"
+  },
+  "analyst_quotes": [
+    {
+      "analyst": "Mel Kiper Jr.",
+      "quote": "The Giants got their franchise receiver in Harrison. This could transform their offense."
+    },
+    {
+      "analyst": "Daniel Jeremiah",
+      "quote": "Aggressive move to trade up for Harrison shows the Giants are all-in on Jones."
+    }
+  ],
+  "overall_grade": "A-",
+  "summary": "The Giants addressed their most pressing need at receiver while also bolstering the offensive line. The trade up for Harrison was costly but could pay dividends if he develops into an elite weapon."
+}
