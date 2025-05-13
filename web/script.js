@@ -1,5 +1,5 @@
 // API endpoint configuration
-const API_ENDPOINT = '/api'; // This will be proxied through CloudFront
+const API_ENDPOINT = 'https://m0xrw4u6p6.execute-api.us-east-1.amazonaws.com/v1';
 
 // DOM elements
 const uploadArea = document.getElementById('uploadArea');
