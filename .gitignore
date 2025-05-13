@@ -71,3 +71,10 @@ logs/
 # Build directories
 dist/
 build/
+
+# Terraform plan files
+*.plan
+plan.out
+
+# Lambda deployment packages
+*.zip
